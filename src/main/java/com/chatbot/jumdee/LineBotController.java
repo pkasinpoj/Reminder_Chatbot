@@ -1,5 +1,4 @@
-
-package com.chatbot.translate;
+package com.chatbot.jumdee;
 
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
@@ -14,13 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import retrofit2.Response;
-import java.io.BufferedReader;
-import java.io.OutputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 import java.io.IOException;
+import gateway.Recieveinfo;
 
 @RestController
 @RequestMapping(value="/linebot")
@@ -76,27 +70,15 @@ public class LineBotController
             }
 
             if (!payload.events[0].message.type.equals("text")){
-                replyToUser(payload.events[0].replyToken, "Unknown message");
+                replyToUser(payload.events[0].replyToken, "ขอโทษด้วยครับน้องจำดีไม่รู้จัก");
             } else {
                 msgText = payload.events[0].message.text;
-                //msgText = msgText.toLowerCase();
+                msgText = msgText.toLowerCase();
 
                 if (!msgText.contains("bot leave")){
-
-                    String fromLang = "id";
-                    String toLang = "su";
-                    //String tex = "Let's have some fun!";
-
-                    translate(fromLang, toLang, msgText, payload.events[0].replyToken);
-
-                    //replyToUser(payload.events[0].replyToken, msgText);
-                    /*try {
-                        getMessageData(msgText, idTarget);
-                    } catch (IOException e) {
-                        System.out.println("Exception is raised ");
-                        e.printStackTrace();
-                    }
-                    */
+                    Recieveinfo datatext = new Recieveinfo();
+                    String recievetext = datatext.Recieveinfo(msgText);
+                    replyToUser(payload.events[0].replyToken,recievetext);
                 } else {
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
@@ -107,50 +89,7 @@ public class LineBotController
 
             }
         }
-
         return new ResponseEntity<String>(HttpStatus.OK);
-    }
-
-    private void translate(String fromLang, String toLang, String text, String payload) throws IOException {
-        // TODO: Should have used a 3rd party library to make a JSON string from an object
-        String jsonPayload = new StringBuilder()
-                .append("{")
-                .append("\"fromLang\":\"")
-                .append(fromLang)
-                .append("\",")
-                .append("\"toLang\":\"")
-                .append(toLang)
-                .append("\",")
-                .append("\"text\":\"")
-                .append(text)
-                .append("\"")
-                .append("}")
-                .toString();
-
-        URL url = new URL(ENDPOINT);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setDoOutput(true);
-        conn.setRequestMethod("POST");
-        conn.setRequestProperty("X-WM-CLIENT-ID", CLIENT_ID);
-        conn.setRequestProperty("X-WM-CLIENT-SECRET", CLIENT_SECRET);
-        conn.setRequestProperty("Content-Type", "application/json");
-
-        OutputStream os = conn.getOutputStream();
-        os.write(jsonPayload.getBytes());
-        os.flush();
-        os.close();
-
-        int statusCode = conn.getResponseCode();
-        System.out.println("Status Code: " + statusCode);
-        BufferedReader br = new BufferedReader(new InputStreamReader(
-                (statusCode == 200) ? conn.getInputStream() : conn.getErrorStream()
-        ));
-        String output;
-        while ((output = br.readLine()) != null) {
-            replyToUser(payload, output);
-            //System.out.println(output);
-        }
-        conn.disconnect();
     }
 
     private void getMessageData(String message, String targetID) throws IOException{
@@ -159,7 +98,7 @@ public class LineBotController
         }
     }
 
-    private void replyToUser(String rToken, String messageToUser){
+    public void replyToUser(String rToken, String messageToUser){
         TextMessage textMessage = new TextMessage(messageToUser);
         ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
         try {
@@ -214,3 +153,4 @@ public class LineBotController
         }
     }
 }
+

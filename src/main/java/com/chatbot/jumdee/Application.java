@@ -1,4 +1,4 @@
-package com.chatbot.translate;
+package com.chatbot.jumdee;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

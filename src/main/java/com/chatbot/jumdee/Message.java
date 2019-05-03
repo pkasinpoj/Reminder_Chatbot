@@ -1,4 +1,4 @@
-package com.chatbot.translate;
+package com.chatbot.jumdee;
 
 public class Message {
     public String type;
