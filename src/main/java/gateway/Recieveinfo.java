@@ -45,7 +45,7 @@ public class Recieveinfo {
         } else if (msgText.contains("ดูคะเเนนเก็บ") || msgText.contains("ดูคะเเนน")  ){
             try {
                 Point p = new Point();
-                String restext = p.getpoint();
+                String restext = p.getpoint(msgText);
                 text = restext;
             }catch (Exception e){
                 text = "มันคืออะไรหรอครับ";
