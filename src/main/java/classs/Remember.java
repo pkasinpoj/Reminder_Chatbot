@@ -13,6 +13,7 @@ public class Remember {
             text = "บันทึกไม่สำเร็จครับ";
         }
         return text;
+        //////
     }
 
 }
