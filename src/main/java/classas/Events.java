@@ -1,7 +1,4 @@
-package classes;
-
-import classes.Message;
-import classes.Source;
+package classas;
 
 public class Events {
     public String type;
