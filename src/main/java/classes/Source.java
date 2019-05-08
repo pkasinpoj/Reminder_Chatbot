@@ -1,4 +1,4 @@
-package com.chatbot.jumdee;
+package classes;
 
 public class Source {
     public String userId;

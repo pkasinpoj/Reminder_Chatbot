@@ -1,9 +1,9 @@
 package gateway;
 
-import classs.Greeting;
-import classs.Point;
-import classs.Remember;
-import classs.Remembersubject;
+import function.Greeting;
+import function.Point;
+import function.Remember;
+import function.Remembersubject;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.chatbot.jumdee;
+package classes;
 
 public class Message {
     public String type;

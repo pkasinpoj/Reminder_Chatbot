@@ -1,4 +1,7 @@
-package com.chatbot.jumdee;
+package classes;
+
+import classes.Message;
+import classes.Source;
 
 public class Events {
     public String type;

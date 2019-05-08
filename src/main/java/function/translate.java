@@ -1,4 +1,4 @@
-package classs;
+package function;
 
 // main
 //                    String fromLang = "th";

@@ -1,5 +1,6 @@
 package com.chatbot.jumdee;
 
+import classes.Payload;
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import retrofit2.Response;
 import java.io.IOException;
 import gateway.Recieveinfo;
-
+import message.Replytouser;
 @RestController
 @RequestMapping(value="/linebot")
 public class LineBotController
@@ -27,10 +28,6 @@ public class LineBotController
     @Autowired
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
-
-    private static final String CLIENT_ID = "FREE_TRIAL_ACCOUNT";
-    private static final String CLIENT_SECRET = "PUBLIC_SECRET";
-    private static final String ENDPOINT = "http://api.whatsmate.net/v1/translation/translate";
 
     @RequestMapping(value="/callback", method=RequestMethod.POST)
 
@@ -52,13 +49,13 @@ public class LineBotController
         String msgText = " ";
         String idTarget = " ";
         String eventType = payload.events[0].type;
-
+        Replytouser r = new Replytouser();
         if (eventType.equals("join")){
             if (payload.events[0].source.type.equals("group")){
-                replyToUser(payload.events[0].replyToken, "Hello Group");
+                r.replyToUser(payload.events[0].replyToken, "Hello Group");
             }
             if (payload.events[0].source.type.equals("room")){
-                replyToUser(payload.events[0].replyToken, "Hello Room");
+                r.replyToUser(payload.events[0].replyToken, "Hello Room");
             }
         } else if (eventType.equals("message")){
             if (payload.events[0].source.type.equals("group")){
@@ -70,7 +67,7 @@ public class LineBotController
             }
 
             if (!payload.events[0].message.type.equals("text")){
-                replyToUser(payload.events[0].replyToken, "ขอโทษด้วยครับน้องจำดีไม่รู้จัก");
+                r.replyToUser(payload.events[0].replyToken, "ขอโทษด้วยครับน้องจำดีไม่รู้จัก");
             } else {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
@@ -78,7 +75,7 @@ public class LineBotController
                 if (!msgText.contains("bot leave")){
                     Recieveinfo datatext = new Recieveinfo();
                     String recievetext = datatext.Recieveinfo(msgText);
-                    replyToUser(payload.events[0].replyToken,recievetext);
+                    r.replyToUser(payload.events[0].replyToken,recievetext);
                 } else {
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
@@ -92,43 +89,43 @@ public class LineBotController
         return new ResponseEntity<String>(HttpStatus.OK);
     }
 
-    private void getMessageData(String message, String targetID) throws IOException{
-        if (message!=null){
-            pushMessage(targetID, message);
-        }
-    }
+//    private void getMessageData(String message, String targetID) throws IOException{
+//        if (message!=null){
+//            pushMessage(targetID, message);
+//        }
+//    }
 
-    public void replyToUser(String rToken, String messageToUser){
-        TextMessage textMessage = new TextMessage(messageToUser);
-        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
-        try {
-            Response<BotApiResponse> response = LineMessagingServiceBuilder
-                    .create(lChannelAccessToken)
-                    .build()
-                    .replyMessage(replyMessage)
-                    .execute();
-            System.out.println("Reply Message: " + response.code() + " " + response.message());
-        } catch (IOException e) {
-            System.out.println("Exception is raised ");
-            e.printStackTrace();
-        }
-    }
+//    public void replyToUser(String rToken, String messageToUser){
+//        TextMessage textMessage = new TextMessage(messageToUser);
+//        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
+//        try {
+//            Response<BotApiResponse> response = LineMessagingServiceBuilder
+//                    .create(lChannelAccessToken)
+//                    .build()
+//                    .replyMessage(replyMessage)
+//                    .execute();
+//            System.out.println("Reply Message: " + response.code() + " " + response.message());
+//        } catch (IOException e) {
+//            System.out.println("Exception is raised ");
+//            e.printStackTrace();
+//        }
+//    }
 
-    private void pushMessage(String sourceId, String txt){
-        TextMessage textMessage = new TextMessage(txt);
-        PushMessage pushMessage = new PushMessage(sourceId,textMessage);
-        try {
-            Response<BotApiResponse> response = LineMessagingServiceBuilder
-                    .create(lChannelAccessToken)
-                    .build()
-                    .pushMessage(pushMessage)
-                    .execute();
-            System.out.println(response.code() + " " + response.message());
-        } catch (IOException e) {
-            System.out.println("Exception is raised ");
-            e.printStackTrace();
-        }
-    }
+//    private void pushMessage(String sourceId, String txt){
+//        TextMessage textMessage = new TextMessage(txt);
+//        PushMessage pushMessage = new PushMessage(sourceId,textMessage);
+//        try {
+//            Response<BotApiResponse> response = LineMessagingServiceBuilder
+//                    .create(lChannelAccessToken)
+//                    .build()
+//                    .pushMessage(pushMessage)
+//                    .execute();
+//            System.out.println(response.code() + " " + response.message());
+//        } catch (IOException e) {
+//            System.out.println("Exception is raised ");
+//            e.printStackTrace();
+//        }
+//    }
 
     private void leaveGR(String id, String type){
         try {
