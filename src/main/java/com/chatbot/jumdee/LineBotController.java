@@ -52,10 +52,10 @@ public class LineBotController
         Replytouser r = new Replytouser();
         if (eventType.equals("join")){
             if (payload.events[0].source.type.equals("group")){
-                r.replyToUser(payload.events[0].replyToken, "Hello Group");
+                replyToUser(payload.events[0].replyToken, "Hello Group");
             }
             if (payload.events[0].source.type.equals("room")){
-                r.replyToUser(payload.events[0].replyToken, "Hello Room");
+                replyToUser(payload.events[0].replyToken, "Hello Room");
             }
         } else if (eventType.equals("message")){
             if (payload.events[0].source.type.equals("group")){
@@ -67,7 +67,7 @@ public class LineBotController
             }
 
             if (!payload.events[0].message.type.equals("text")){
-                r.replyToUser(payload.events[0].replyToken, "ขอโทษด้วยครับน้องจำดีไม่รู้จัก");
+                replyToUser(payload.events[0].replyToken, "ขอโทษด้วยครับน้องจำดีไม่รู้จัก");
             } else {
                 msgText = payload.events[0].message.text;
                 msgText = msgText.toLowerCase();
@@ -75,7 +75,7 @@ public class LineBotController
                 if (!msgText.contains("bot leave")){
                     Recieveinfo datatext = new Recieveinfo();
                     String recievetext = datatext.Recieveinfo(msgText);
-                    r.replyToUser(payload.events[0].replyToken,recievetext);
+                    replyToUser(payload.events[0].replyToken,recievetext);
                 } else {
                     if (payload.events[0].source.type.equals("group")){
                         leaveGR(payload.events[0].source.groupId, "group");
@@ -95,21 +95,21 @@ public class LineBotController
 //        }
 //    }
 
-//    public void replyToUser(String rToken, String messageToUser){
-//        TextMessage textMessage = new TextMessage(messageToUser);
-//        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
-//        try {
-//            Response<BotApiResponse> response = LineMessagingServiceBuilder
-//                    .create(lChannelAccessToken)
-//                    .build()
-//                    .replyMessage(replyMessage)
-//                    .execute();
-//            System.out.println("Reply Message: " + response.code() + " " + response.message());
-//        } catch (IOException e) {
-//            System.out.println("Exception is raised ");
-//            e.printStackTrace();
-//        }
-//    }
+    public void replyToUser(String rToken, String messageToUser){
+        TextMessage textMessage = new TextMessage(messageToUser);
+        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
+        try {
+            Response<BotApiResponse> response = LineMessagingServiceBuilder
+                    .create(lChannelAccessToken)
+                    .build()
+                    .replyMessage(replyMessage)
+                    .execute();
+            System.out.println("Reply Message: " + response.code() + " " + response.message());
+        } catch (IOException e) {
+            System.out.println("Exception is raised ");
+            e.printStackTrace();
+        }
+    }
 
 //    private void pushMessage(String sourceId, String txt){
 //        TextMessage textMessage = new TextMessage(txt);

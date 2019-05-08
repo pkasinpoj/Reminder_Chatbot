@@ -14,19 +14,19 @@ public class Replytouser {
     @Autowired
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
-    public void replyToUser(String rToken, String messageToUser){
-        TextMessage textMessage = new TextMessage(messageToUser);
-        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
-        try {
-            Response<BotApiResponse> response = LineMessagingServiceBuilder
-                    .create(lChannelAccessToken)
-                    .build()
-                    .replyMessage(replyMessage)
-                    .execute();
-            System.out.println("Reply Message: " + response.code() + " " + response.message());
-        } catch (IOException e) {
-            System.out.println("Exception is raised ");
-            e.printStackTrace();
-        }
-    }
+//    public void replyToUser(String rToken, String messageToUser){
+//        TextMessage textMessage = new TextMessage(messageToUser);
+//        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
+//        try {
+//            Response<BotApiResponse> response = LineMessagingServiceBuilder
+//                    .create(lChannelAccessToken)
+//                    .build()
+//                    .replyMessage(replyMessage)
+//                    .execute();
+//            System.out.println("Reply Message: " + response.code() + " " + response.message());
+//        } catch (IOException e) {
+//            System.out.println("Exception is raised ");
+//            e.printStackTrace();
+//        }
+//    }
 }
