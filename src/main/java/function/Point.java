@@ -13,8 +13,8 @@ public class Point {
             }else if (msgText.contains("จำคะเเนน")){
                 arrB = msgText.split("จำคะเเนน");
             }
-            if (arrB[1].contains("=")){
-                cut = arrB[1].split("=");
+            if (arrB[1].contains("ได้คะเเนน")){
+                cut = arrB[1].split("ได้คะเเนน");
             }else if (arrB[1].contains("ได้")){
                 cut = arrB[1].split("ได้");
             }
