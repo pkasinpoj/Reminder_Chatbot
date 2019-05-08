@@ -5,13 +5,16 @@ import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.message.TextMessage;
 import com.linecorp.bot.model.response.BotApiResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import retrofit2.Response;
 
 import java.io.IOException;
 
 public class Replytouser {
-    Config c = new Config();
-    String lChannelAccessToken = c.getChannelAccessToken();
+    @Qualifier("com.linecorp.channel_access_token")
+    String lChannelAccessToken;
+//    String lChannelAccessToken = );
     public void replyToUser(String rToken, String messageToUser){
         System.out.println("this"+lChannelAccessToken);
         TextMessage textMessage = new TextMessage(messageToUser);
