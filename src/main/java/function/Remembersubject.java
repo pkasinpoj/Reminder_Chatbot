@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class Remembersubject {
     public String remembersubject(String msgText) throws IOException {
+        System.out.println("here");
         String text;
         String[] arrB = new String[3];
         String[] cut = new String[2];
