@@ -2,15 +2,14 @@ package com.chatbot.jumdee;
 
 import classas.Payload;
 import com.google.gson.Gson;
-import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.client.LineSignatureValidator;
-import com.linecorp.bot.model.response.BotApiResponse;
+import events.LeaveGR;
+import events.ManageEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import retrofit2.Response;
 import java.io.IOException;
 import gateway.Recieveinfo;
 import message.Replytouser;
@@ -42,109 +41,50 @@ public class LineBotController
         }
         Gson gson = new Gson();
         Payload payload = gson.fromJson(aPayload, Payload.class);
-
-        String msgText = " ";
-        String idTarget = " ";
-        String eventType = payload.events[0].type;
-        Replytouser r = new Replytouser();
-        if (eventType.equals("join")){
-            if (payload.events[0].source.type.equals("group")){
-                r.replyToUser(payload.events[0].replyToken, "Hello Group");
-            }
-            if (payload.events[0].source.type.equals("room")){
-                r.replyToUser(payload.events[0].replyToken, "Hello Room");
-            }
-        } else if (eventType.equals("message")){
-            if (payload.events[0].source.type.equals("group")){
-                idTarget = payload.events[0].source.groupId;
-            } else if (payload.events[0].source.type.equals("room")){
-                idTarget = payload.events[0].source.roomId;
-            } else if (payload.events[0].source.type.equals("user")){
-                idTarget = payload.events[0].source.userId;
-            }
-
-            if (!payload.events[0].message.type.equals("text")){
-                r.replyToUser(payload.events[0].replyToken, "ขอโทษด้วยครับน้องจำดีไม่รู้จัก");
-            } else {
-                msgText = payload.events[0].message.text;
-                msgText = msgText.toLowerCase();
-
-                if (!msgText.contains("bot leave")){
-                    Recieveinfo datatext = new Recieveinfo();
-                    String recievetext = datatext.Recieveinfo(msgText);
-                    r.replyToUser(payload.events[0].replyToken,recievetext);
-                } else {
-                    if (payload.events[0].source.type.equals("group")){
-                        leaveGR(payload.events[0].source.groupId, "group");
-                    } else if (payload.events[0].source.type.equals("room")){
-                        leaveGR(payload.events[0].source.roomId, "room");
-                    }
-                }
-
-            }
-        }
+        ManageEvent m = new ManageEvent();
+        m.manageEvent(payload);
+//        String msgText = " ";
+//        String idTarget = " ";
+//        String eventType = payload.events[0].type;
+//        Replytouser r = new Replytouser();
+//        if (eventType.equals("join")){
+//            if (payload.events[0].source.type.equals("group")){
+//                r.replyToUser(payload.events[0].replyToken, "Hello Group");
+//            }
+//            if (payload.events[0].source.type.equals("room")){
+//                r.replyToUser(payload.events[0].replyToken, "Hello Room");
+//            }
+//        } else if (eventType.equals("message")){
+//            if (payload.events[0].source.type.equals("group")){
+//                idTarget = payload.events[0].source.groupId;
+//            } else if (payload.events[0].source.type.equals("room")){
+//                idTarget = payload.events[0].source.roomId;
+//            } else if (payload.events[0].source.type.equals("user")){
+//                idTarget = payload.events[0].source.userId;
+//            }
+//
+//            if (!payload.events[0].message.type.equals("text")){
+//                r.replyToUser(payload.events[0].replyToken, "ขอโทษด้วยครับน้องจำดีไม่รู้จัก");
+//            } else {
+//                msgText = payload.events[0].message.text;
+//                msgText = msgText.toLowerCase();
+//
+//                if (!msgText.contains("bot leave")){
+//                    Recieveinfo datatext = new Recieveinfo();
+//                    String recievetext = datatext.Recieveinfo(msgText);
+//                    r.replyToUser(payload.events[0].replyToken,recievetext);
+//                } else {
+//                    LeaveGR l = new LeaveGR();
+//                    if (payload.events[0].source.type.equals("group")){
+//                        l.leaveGR(payload.events[0].source.groupId, "group");
+//                    } else if (payload.events[0].source.type.equals("room")){
+//                        l.leaveGR(payload.events[0].source.roomId, "room");
+//                    }
+//                }
+//
+//            }
+//        }
         return new ResponseEntity<String>(HttpStatus.OK);
-    }
-
-//    private void getMessageData(String message, String targetID) throws IOException{
-//        if (message!=null){
-//            pushMessage(targetID, message);
-//        }
-//    }
-
-//    public void replyToUser(String rToken, String messageToUser){
-//        TextMessage textMessage = new TextMessage(messageToUser);
-//        ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
-//        try {
-//            Response<BotApiResponse> response = LineMessagingServiceBuilder
-//                    .create(lChannelAccessToken)
-//                    .build()
-//                    .replyMessage(replyMessage)
-//                    .execute();
-//            System.out.println("Reply Message: " + response.code() + " " + response.message());
-//        } catch (IOException e) {
-//            System.out.println("Exception is raised ");
-//            e.printStackTrace();
-//        }
-//    }
-
-//    private void pushMessage(String sourceId, String txt){
-//        TextMessage textMessage = new TextMessage(txt);
-//        PushMessage pushMessage = new PushMessage(sourceId,textMessage);
-//        try {
-//            Response<BotApiResponse> response = LineMessagingServiceBuilder
-//                    .create(lChannelAccessToken)
-//                    .build()
-//                    .pushMessage(pushMessage)
-//                    .execute();
-//            System.out.println(response.code() + " " + response.message());
-//        } catch (IOException e) {
-//            System.out.println("Exception is raised ");
-//            e.printStackTrace();
-//        }
-//    }
-
-    private void leaveGR(String id, String type){
-        try {
-            if (type.equals("group")){
-                Response<BotApiResponse> response = LineMessagingServiceBuilder
-                        .create(lChannelAccessToken)
-                        .build()
-                        .leaveGroup(id)
-                        .execute();
-                System.out.println(response.code() + " " + response.message());
-            } else if (type.equals("room")){
-                Response<BotApiResponse> response = LineMessagingServiceBuilder
-                        .create(lChannelAccessToken)
-                        .build()
-                        .leaveRoom(id)
-                        .execute();
-                System.out.println(response.code() + " " + response.message());
-            }
-        } catch (IOException e) {
-            System.out.println("Exception is raised ");
-            e.printStackTrace();
-        }
     }
 }
 
