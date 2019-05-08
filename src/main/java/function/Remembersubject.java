@@ -8,16 +8,16 @@ public class Remembersubject {
         String[] arrB = new String[3];
         String[] cut = new String[2];
         try {
-            if (msgText.contains("จำาวิชา")){
+            if (msgText.contains("จำวิชา")){
                 arrB = msgText.split("จำวิชา");
             }else if (msgText.contains("จำวิชาเรียน")){
                 arrB = msgText.split("จำวิชาเรียน");
             }
             System.out.println(arrB);
-            if (arrB[0].contains("เรียนวัน")){
-                cut = arrB[0].split("เรียนวัน");
-            }else if (arrB[0].contains("เรียน")){
-                cut = arrB[0].split("เรียน");
+            if (arrB[1].contains("เรียนวัน")){
+                cut = arrB[1].split("เรียนวัน");
+            }else if (arrB[1].contains("เรียน")){
+                cut = arrB[1].split("เรียน");
             }
             if (arrB[2].equals("จันทร์") || arrB[2].equals("อังคาร") || arrB[2].equals("พุธ") || arrB[2].equals("พฤหัส") || arrB[2].equals("ศุกร์") || arrB[2].equals("เสาร์") || arrB[2].equals("อาทิตย์")) {
                 text = "ชื่อวิชาคือ" + "\n" + cut[0] + "\n" + "เรียนวัน" + cut[1] + "\n" + "บันทึกข้อมูลเสร็จเเล้วครับ";
