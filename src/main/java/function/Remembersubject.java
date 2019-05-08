@@ -20,7 +20,7 @@ public class Remembersubject {
             }else if (arrB[1].contains("เรียน")){
                 cut = arrB[1].split("เรียน");
             }
-            if (arrB[2].equals("จันทร์") || arrB[2].equals("อังคาร") || arrB[2].equals("พุธ") || arrB[2].equals("พฤหัส") || arrB[2].equals("ศุกร์") || arrB[2].equals("เสาร์") || arrB[2].equals("อาทิตย์")) {
+            if (cut[1].equals("จันทร์") || cut[1].equals("อังคาร") || cut[1].equals("พุธ") || cut[1].equals("พฤหัส") || cut[1].equals("ศุกร์") || cut[1].equals("เสาร์") || cut[1].equals("อาทิตย์")) {
                 text = "ชื่อวิชาคือ" + "\n" + cut[0] + "\n" + "เรียนวัน" + cut[1] + "\n" + "บันทึกข้อมูลเสร็จเเล้วครับ";
             } else {
                 text = "ไม่บอกวันเรียนน้องจำดีจำไม่ได้น้า";
