@@ -1,7 +1,6 @@
 package function;
 
 import condition.ConditionPoint;
-
 import java.io.IOException;
 
 public class Point {

@@ -1,7 +1,6 @@
 package condition;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 
 public class ConditionPoint {
     public static String[] conditionpoint (String msgText) throws IOException {
