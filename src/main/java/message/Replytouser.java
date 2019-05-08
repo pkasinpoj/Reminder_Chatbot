@@ -15,7 +15,7 @@ public class Replytouser {
     @Qualifier("com.linecorp.channel_access_token")
     String lChannelAccessToken;
     public void replyToUser(String rToken, String messageToUser){
-        System.out.println("come");
+        System.out.println("this"+lChannelAccessToken);
         TextMessage textMessage = new TextMessage(messageToUser);
         ReplyMessage replyMessage = new ReplyMessage(rToken, textMessage);
         try {
