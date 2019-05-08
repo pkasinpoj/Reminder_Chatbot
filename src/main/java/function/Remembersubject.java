@@ -14,7 +14,7 @@ public class Remembersubject {
             }else if (msgText.contains("วิชาเรียน")){
                 arrB = msgText.split("วิชาเรียน");
             }
-            System.out.println(arrB[0]);
+            System.out.println(arrB[1]);
             if (arrB[1].contains("เรียนวัน")){
                 cut = arrB[1].split("เรียนวัน");
             }else if (arrB[1].contains("เรียน")){
