@@ -9,10 +9,10 @@ public class Remembersubject {
         String[] arrB = new String[3];
         String[] cut = new String[2];
         try {
-            if (msgText.contains("จำวิชา")){
-                arrB = msgText.split("จำวิชา");
-            }else if (msgText.contains("จำวิชาเรียน")){
-                arrB = msgText.split("จำวิชาเรียน");
+            if (msgText.contains("วิชา")){
+                arrB = msgText.split("วิชา");
+            }else if (msgText.contains("วิชาเรียน")){
+                arrB = msgText.split("วิชาเรียน");
             }
             System.out.println(arrB);
             if (arrB[1].contains("เรียนวัน")){
