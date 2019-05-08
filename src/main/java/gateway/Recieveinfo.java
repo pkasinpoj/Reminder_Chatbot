@@ -14,10 +14,6 @@ public class Recieveinfo {
                 Greeting g = new Greeting();
                 String restext = g.greeting();
                 text = restext;
-        } else if (msgText.contains(",")){
-                Remember r = new Remember();
-                String restext = r.remember(msgText);
-                text = restext;
         } else if (msgText.contains("จำวิชาเรียน") || msgText.contains("จำวิชา")  ){
                 Remembersubject r = new Remembersubject();
                 String restext = r.remembersubject(msgText);
