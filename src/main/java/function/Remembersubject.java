@@ -20,8 +20,8 @@ public class Remembersubject {
             }else if (arrB[1].contains("เรียน")){
                 cut = arrB[1].split("เรียน");
             }
+            System.out.println(cut[0]);
             System.out.println(cut[1]);
-            System.out.println(cut[2]);
 //             System.out.println(cut[2]);
             if (cut[2].equals("จันทร์") || cut[2].equals("อังคาร") || cut[2].equals("พุธ") || cut[2].equals("พฤหัส") || cut[2].equals("ศุกร์") || cut[2].equals("เสาร์") || cut[2].equals("อาทิตย์")) {
                 text = "ชื่อวิชาคือ" + "\n" + cut[1] + "\n" + "เรียนวัน" + cut[2] + "\n" + "บันทึกข้อมูลเสร็จเเล้วครับ";
