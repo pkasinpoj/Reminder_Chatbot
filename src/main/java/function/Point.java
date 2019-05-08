@@ -20,7 +20,7 @@ public class Point {
         String text;
         try {
            ConditionPoint c = new ConditionPoint();
-            String[] arrB = new String[2];
+            String[] arrB = c.conditiongetpoint(msgText);
             text = "ชื่อวิชาคือ" + "\n" + arrB[1] + "\n" + "คะเเนนของคุณคือ" + "99" + "\n" + "ขอบคุณครับ";
         } catch (Exception e) {
             text = "เอ๋ ไม่มีชื่อวิชาน้องจำดีเช็คให้ไม่ได้นะ";
