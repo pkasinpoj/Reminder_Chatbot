@@ -11,47 +11,33 @@ public class Recieveinfo {
     public String Recieveinfo (String msgText) throws IOException {
         String text;
         if (msgText.contains("ช่วยจำหน่อย") || msgText.contains("จำให้หน่อย") ){
-            try {
                 Greeting g = new Greeting();
                 String restext = g.greeting();
                 text = restext;
-            }catch (Exception e){
-                text = "อ่าาา ทำไมน้องจำดีไม่เข้าใจเลย";
-            }
         } else if (msgText.contains(",")){
-            try {
                 Remember r = new Remember();
                 String restext = r.remember(msgText);
                 text = restext;
-            }catch (Exception e){
-                text = "ไม่สามารถบันทึกได้ครับ";
-            }
         } else if (msgText.contains("จำวิชาเรียน") || msgText.contains("จำวิชา")  ){
-            try {
                 Remembersubject r = new Remembersubject();
                 String restext = r.remembersubject(msgText);
                 text = restext;
-            }catch (Exception e){
-                text = "มันคืออะไรหรอครับ";
-            }
         } else if (msgText.contains("จำคะเเนนเก็บ") || msgText.contains("จำคะเเนน")  ){
-            try {
                 Point p = new Point();
                 String restext = p.recievepoint(msgText);
                 text = restext;
-            }catch (Exception e){
-                text = "มันคืออะไรหรอครับ";
-            }
         } else if (msgText.contains("ดูคะเเนนเก็บ") || msgText.contains("ดูคะเเนน")  ){
-            try {
                 Point p = new Point();
                 String restext = p.getpoint(msgText);
                 text = restext;
-            }catch (Exception e){
-                text = "มันคืออะไรหรอครับ";
-            }
         } else  {
-            text = "มันคืออะไรอ่าาาาครับ";
+            try {
+                Remember r = new Remember();
+                String restext = r.remembers(msgText);
+                text = restext;
+            }catch (Exception e){
+                text = "มันคืออะไรอ่าาาาครับ";
+            }
         }
         return text;
     }
