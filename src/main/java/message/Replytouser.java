@@ -1,5 +1,6 @@
 package message;
 
+import com.chatbot.jumdee.Config;
 import com.linecorp.bot.client.LineMessagingServiceBuilder;
 import com.linecorp.bot.model.ReplyMessage;
 import com.linecorp.bot.model.message.TextMessage;
@@ -9,7 +10,8 @@ import retrofit2.Response;
 import java.io.IOException;
 
 public class Replytouser {
-    String lChannelAccessToken = "bc+8q2pwNvPHxyxIBWPybTCZPwta9FWvYCjuiGopSAYgve+4cYTOCXDasIOhMpwFtslAhBjmV2TQLM89bILLiz3A8nQ9iYWXAnJUSzMH+f/vTCQ6rogw6e4sOlPptKO1Sd4oOgLtnObK2fk8+g089QdB04t89/1O/w1cDnyilFU=";
+    Config c = new Config();
+    String lChannelAccessToken = c.getChannelAccessToken();
     public void replyToUser(String rToken, String messageToUser){
         System.out.println("this"+lChannelAccessToken);
         TextMessage textMessage = new TextMessage(messageToUser);
