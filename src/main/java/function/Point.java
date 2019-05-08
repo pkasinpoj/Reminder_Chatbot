@@ -19,7 +19,8 @@ public class Point {
     public String getpoint(String msgText) throws IOException {
         String text;
         try {
-            String[] arrB = msgText.split("-");
+           ConditionPoint c = new ConditionPoint();
+            String[] arrB = new String[2];
             text = "ชื่อวิชาคือ" + "\n" + arrB[1] + "\n" + "คะเเนนของคุณคือ" + "99" + "\n" + "ขอบคุณครับ";
         } catch (Exception e) {
             text = "เอ๋ ไม่มีชื่อวิชาน้องจำดีเช็คให้ไม่ได้นะ";

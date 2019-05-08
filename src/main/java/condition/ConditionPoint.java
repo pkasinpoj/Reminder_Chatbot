@@ -18,4 +18,14 @@ public class ConditionPoint {
             }
         return cut ;
     }
+    public static String[] conditiongetpoint (String msgText) throws IOException {
+        String[] arrB = new String[2];
+        if (msgText.contains("วิชา")){
+            arrB = msgText.split("วิชา");
+        }else if (msgText.contains("เก็บ")){
+            arrB = msgText.split("เก็บ");
+        }else if (msgText.contains("คะเเนน"))
+            arrB = msgText.split("คะเเนน");
+        return arrB ;
+    }
 }
