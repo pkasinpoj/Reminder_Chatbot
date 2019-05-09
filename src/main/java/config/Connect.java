@@ -6,7 +6,7 @@ public class Connect {
     public static Connection connectiondb(){
         try{
             System.out.println("here");
-           Class.forName("mysql-connector-java");
+           Class.forName("mysql-connector-java-8.0.16");
            String url = "jdbc:mysql://localhost/jumdee";
            Connection con = DriverManager.getConnection(url,"root","");
             System.out.println("Success");
