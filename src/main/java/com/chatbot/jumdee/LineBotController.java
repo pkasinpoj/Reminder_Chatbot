@@ -2,6 +2,7 @@ package com.chatbot.jumdee;
 import classas.Payload;
 import com.google.gson.Gson;
 import com.linecorp.bot.client.LineSignatureValidator;
+import config.Connect;
 import events.ManageEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
+import java.sql.Connection;
+
 @RestController
 @RequestMapping(value="/linebot")
 public class LineBotController
@@ -31,6 +34,8 @@ public class LineBotController
         Gson gson = new Gson();
         Payload payload = gson.fromJson(aPayload, Payload.class);
         ManageEvent m = new ManageEvent();
+        Connect c = new Connect();
+        Connection con = c.connectiondb();
         m.manageEvent(payload);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
