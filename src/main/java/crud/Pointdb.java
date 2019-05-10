@@ -22,7 +22,7 @@ public class Pointdb {
                 System.out.println(subject);
                 System.out.println(point);
                 System.out.println(idpk);
-                String sql = ("INSERT INTO remember value ('" + randomnum + "','" + subject + "','" + point + "','" + idpk + "')");
+                String sql = ("INSERT INTO point value ('" + randomnum + "','" + subject + "','" + point + "','" + idpk + "')");
                 Connect c = new Connect();
                 Connection con = c.connectDB();
                 Statement stm = con.createStatement();
