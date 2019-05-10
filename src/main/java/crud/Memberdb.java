@@ -4,11 +4,13 @@ import config.Connect;
 
 import java.sql.Connection;
 import java.sql.Statement;
+import java.util.Random;
 
 public class Memberdb {
     public static void insertmember(String idline) {
-        System.out.println("this id"+ idline);
-        String sql = ("INSERT INTO member value ('" + idline + "'),'" + idline + "')");
+        Random r = new Random();
+        int randomnum = r.nextInt(1000000);
+        String sql = ("INSERT INTO member value ('" + randomnum + "'),'" + idline + "')");
         try {
             Connect c = new Connect();
             Connection con = c.connectDB();
