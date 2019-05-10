@@ -51,4 +51,33 @@ public class Memberdb {
             return result;
         }
     }
+    public static Integer checkid(String idline) {
+        String sql = "select * from member";
+        int idpk = 0;
+        try {
+            Connect c = new Connect();
+            Connection con = c.connectDB();
+            ResultSet rs = con.createStatement().executeQuery(sql);
+            String[] arr = null;
+            String[] arrpk = null;
+            while (rs.next()) {
+                String ipk = rs.getString(1);
+                String em = rs.getString(2);
+                arrpk = ipk.split("\n");
+                arr = em.split("\n");
+                for (int i =0; i < arr.length; i++){
+//                    System.out.println(arr[i]);
+                    if (arr[i].equals(idline)){
+                       idpk  = Integer.parseInt(arrpk[i]);
+                    }
+                }
+            }
+            rs.close();
+            con.close();
+            return idpk;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return idpk;
+        }
+    }
 }
