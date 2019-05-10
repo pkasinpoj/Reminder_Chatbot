@@ -18,13 +18,11 @@ public class Memberdb {
             Statement stm = con.createStatement();
             stm.executeUpdate(sql);
             System.out.println("บันทึกข้อมูลเรียบร้อย");
-
             con.close();
             stm.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public static boolean checkmember(String idline) {

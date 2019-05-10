@@ -1,6 +1,5 @@
 package function;
-
-import crud.Memberdb;
+import crud.Rememberdb;
 
 public class Remember {
     public String remembers(String msgText,String id)  {
@@ -12,12 +11,14 @@ public class Remember {
                 arrB = msgText.split("กำหนดส่ง");
             }
             if (arrB[0] != null && arrB[1] != null ){
-                text = "งานของคุณคือ"+"\n"+arrB[0]+"\n"+"กำหนดส่งคือ"+arrB[1]+"\n"+"บันทึกข้อมูลเสร็จเเล้วครับ";
-                Memberdb m = new Memberdb();
-                m.insertmember(id);
-                boolean check = m.checkmember(id);
-                System.out.println(check);
-
+                boolean result = false;
+                Rememberdb r = new Rememberdb();
+                result = r.insertremember(arrB[0],arrB[1],id);
+                if (result){
+                    text = "งานของคุณคือ"+"\n"+arrB[0]+"\n"+"กำหนดส่งคือ"+arrB[1]+"\n"+"บันทึกข้อมูลเสร็จเเล้วครับ";
+                }else{
+                    text = "บันทึกข้อมูลไม่สำเร็จครับ";
+                }
             }
             else {
                 text = "ไม่มีกำหนดส่งน้องจำดีช่วยไม่ได้น้า";
