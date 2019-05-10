@@ -24,14 +24,20 @@ public class Point {
         }
         return text ;
     }
-    public String getpoint(String msgText) throws IOException {
+    public String getpoint(String msgText,String idline) throws IOException {
         String text;
         try {
            ConditionPoint c = new ConditionPoint();
             String[] arrB = c.conditiongetpoint(msgText);
-            text = "ชื่อวิชาคือ" + "\n" + arrB[1] + "\n" + "คะเเนนของคุณคือ" + "99" + "\n" + "ขอบคุณครับ";
+            Pointdb p = new Pointdb();
+            int point = p.showpoint(arrB[1],idline);
+            if (point != 0){
+                text = "ชื่อวิชาคือ" + "\n" + arrB[1] + "\n" + "คะเเนนของคุณคือ" + point + "\n" + "ขอบคุณครับ";
+            }else {
+                text = "ไม่มีคะเเนนเลยอ่าครับ";
+            }
         } catch (Exception e) {
-            text = "เอ๋ ไม่มีชื่อวิชาน้องจำดีเช็คให้ไม่ได้นะ";
+            text = "เอ๋ ทำไมไม่มีคะเเเนนเลยนะ";
         }
         return text ;
     }

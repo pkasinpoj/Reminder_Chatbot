@@ -24,7 +24,7 @@ public class Recieveinfo {
                 text = restext;
         } else if (msgText.contains("ดูคะเเนนเก็บ") || msgText.contains("ดูคะเเนน")  ){
                 Point p = new Point();
-                String restext = p.getpoint(msgText);
+                String restext = p.getpoint(msgText,id);
                 text = restext;
         } else if (msgText.contains("เช้คงานส่ง") || msgText.contains("งานส่ง") || msgText.contains("มีไรส่ง")  ){
                 Remember r = new Remember();
