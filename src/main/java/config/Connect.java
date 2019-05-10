@@ -7,15 +7,13 @@ public class Connect {
         try{
             System.out.println("here");
                 Class.forName("com.mysql.cj.jdbc.Driver");//ระบุ Driver
-                String url = "jdbc:mysql://localhost:3307/jumdee";
-                Connection connect = DriverManager.getConnection("jdbc:mysql://localhost:3307/jumdee?user=root&password");
+                String url = "jdbc:mysql://localhost:3306/jumdee";
                 Connection connect = DriverManager.getConnection(url, "root","");
                 System.out.println("เชื่อมต่อฐานข้อมูลเรียบร้อย");
                 return connect;
         }catch (Exception e){
             System.out.println("this"+e);
         }
-        ///
         return null;
     }
 }
