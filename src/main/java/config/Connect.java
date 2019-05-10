@@ -14,7 +14,6 @@ public class Connect {
         }catch (Exception e){
             System.out.println("this"+e);
         }
-//
         return null;
     }
 }
