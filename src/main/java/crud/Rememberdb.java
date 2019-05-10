@@ -79,7 +79,7 @@ public class Rememberdb {
                         k++;
                     }
                 }
-                 texts = "งานที่ต้องส่งคือ"+"\n"+text[0];
+                 texts = "งานที่ต้องส่งคือ"+"\n"+"enterpise";
             }
             rs.close();
             con.close();

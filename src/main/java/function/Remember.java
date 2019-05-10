@@ -28,23 +28,28 @@ public class Remember {
     public String showremembers(String msgText,String id)  {
         String text ;
         String[] arrB = new String[2];
-        if (msgText.contains("ส่ง")){
-            arrB = msgText.split("ส่ง");
-        } else if (msgText.contains("กำหนดส่ง")){
-            arrB = msgText.split("กำหนดส่ง");
-        }
-        if (arrB[0] != null && arrB[1] != null ){
-            String result = "";
-            Rememberdb r = new Rememberdb();
-            result = r.showremember(arrB[1],id);
-            if (result != ""){
-                return result;
-            }else{
-                return text = "ไม่มีข้อมูลครับ";
+        try {
+            if (msgText.contains("ส่ง")){
+                arrB = msgText.split("ส่ง");
+            } else if (msgText.contains("กำหนดส่ง")){
+                arrB = msgText.split("กำหนดส่ง");
+            }
+            if (arrB[0] != null && arrB[1] != null ){
+                String result = "";
+                Rememberdb r = new Rememberdb();
+                result = r.showremember(arrB[1],id);
+                if (result != ""){
+                    text = result;
+                }else{
+                    text = "ไม่มีข้อมูลครับ";
+                }
+            }else {
+                text = "ไม่มีข้อมูลครับ";
             }
         }
-        else {
-            return text = "ขอโทษด้วยครับไม่มีข้อมูล";
+        catch (Exception e){
+             text = "ขอโทษด้วยครับไม่มีข้อมูล";
         }
+        return text;
     }
 }
