@@ -11,7 +11,7 @@ public class CheckMember {
                 m.insertmember(idline);
             }
         }catch (Exception e){
-            System.out.println(e);
+            System.out.println("checkid+"+e);
         }
     }
 }
