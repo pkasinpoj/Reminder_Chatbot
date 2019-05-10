@@ -7,7 +7,8 @@ import java.sql.Statement;
 
 public class Memberdb {
     public static void insertmember(String idline) {
-        String sql = "insert into member value ('555',idline)";
+        System.out.println("this id"+ idline);
+        String sql = ("INSERT INTO member (idMember,idline) "  + "VALUES (1,'Lokesh')");
         try {
             Connect c = new Connect();
             Connection con = c.connectDB();
