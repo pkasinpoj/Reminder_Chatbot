@@ -15,6 +15,8 @@ public class Remember {
                 text = "งานของคุณคือ"+"\n"+arrB[0]+"\n"+"กำหนดส่งคือ"+arrB[1]+"\n"+"บันทึกข้อมูลเสร็จเเล้วครับ";
                 Memberdb m = new Memberdb();
                 m.insertmember(id);
+                boolean check = m.checkmember();
+
             }
             else {
                 text = "ไม่มีกำหนดส่งน้องจำดีช่วยไม่ได้น้า";
