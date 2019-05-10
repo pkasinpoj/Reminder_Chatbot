@@ -17,9 +17,10 @@ public class Rememberdb {
         System.out.println(date);
         arr = date.split("/");
         for (int i =0;i<arr.length;i++){
+            System.out.println(i);
             System.out.println(arr[i]);
         }
-        String sql = ("INSERT INTO remember value ('" + randomnum + "','" + work + "','" + arr[0] + "','" + arr[1] + "','" + arr[2] + "')");
+        String sql = ("INSERT INTO remember value ('" + randomnum + "','" + work + "','" + arr[0] + "','" + arr[1] + "','" + arr[2] + "','" + idline + "')");
         CheckMember check = new CheckMember();
         check.checkid(idline);
         Connect c = new Connect();
