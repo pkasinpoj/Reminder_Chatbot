@@ -3,7 +3,7 @@ package config;
 import java.sql.*;
 
 public class Connect {
-    public static Connection connectiondb(){
+    public static Connection connectDB(){
         try{
             System.out.println("here");
                 Class.forName("com.mysql.cj.jdbc.Driver");//ระบุ Driver

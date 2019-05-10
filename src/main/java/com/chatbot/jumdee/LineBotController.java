@@ -35,7 +35,7 @@ public class LineBotController
         Payload payload = gson.fromJson(aPayload, Payload.class);
         ManageEvent m = new ManageEvent();
         Connect c = new Connect();
-        Connection con = c.connectiondb();
+        Connection con = c.connectDB();
         m.manageEvent(payload);
         return new ResponseEntity<String>(HttpStatus.OK);
     }
