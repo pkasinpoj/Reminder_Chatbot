@@ -38,9 +38,9 @@ public class Memberdb {
             while (rs.next()) {
                 String em = rs.getString(2);
                 arr = em.split("\n");
-                for (int i =0; i < arr.length; i++){
-                    System.out.println(arr[i]);
-                }
+            }
+            for (int i =0; i < arr.length; i++){
+                System.out.println(arr[i]);
             }
 //            System.out.println(arr[0]);
 //            System.out.println(arr[1]);
