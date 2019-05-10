@@ -19,6 +19,9 @@ public class Pointdb {
             Memberdb m = new Memberdb();
             idpk = m.checkid(idline);
             if (idpk !=0){
+                System.out.println(subject);
+                System.out.println(point);
+                System.out.println(idpk);
                 String sql = ("INSERT INTO remember value ('" + randomnum + "','" + subject + "','" + point + "','" + idpk + "')");
                 Connect c = new Connect();
                 Connection con = c.connectDB();
