@@ -6,8 +6,8 @@ import java.sql.Connection;
 import java.sql.Statement;
 
 public class Memberdb {
-    public static void insertmember() {
-        String sql = "insert into member value ('555','llll')";
+    public static void insertmember(String idline) {
+        String sql = "insert into member value ('555',idline)";
         try {
             Connect c = new Connect();
             Connection con = c.connectDB();

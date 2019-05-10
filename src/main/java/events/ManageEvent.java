@@ -36,7 +36,7 @@ public class ManageEvent {
 
                 if (!msgText.contains("bot leave")){
                     Recieveinfo datatext = new Recieveinfo();
-                    String recievetext = datatext.Recieveinfo(msgText);
+                    String recievetext = datatext.Recieveinfo(msgText,idTarget);
                     r.replyToUser(payload.events[0].replyToken,recievetext);
                 } else {
                     LeaveGR l = new LeaveGR();

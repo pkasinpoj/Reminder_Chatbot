@@ -8,7 +8,7 @@ import function.Remembersubject;
 import java.io.IOException;
 
 public class Recieveinfo {
-    public String Recieveinfo (String msgText) throws IOException {
+    public String Recieveinfo (String msgText,String id) throws IOException {
         String text;
         if (msgText.contains("ช่วยจำหน่อย") || msgText.contains("จำให้หน่อย") ){
                 Greeting g = new Greeting();
@@ -29,7 +29,7 @@ public class Recieveinfo {
         } else  {
             try {
                 Remember r = new Remember();
-                String restext = r.remembers(msgText);
+                String restext = r.remembers(msgText,id);
                 text = restext;
             }catch (Exception e){
                 text = "มันคืออะไรอ่าาาาครับ";
