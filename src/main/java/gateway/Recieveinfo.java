@@ -20,7 +20,7 @@ public class Recieveinfo {
                 text = restext;
         } else if (msgText.contains("จำคะเเนนเก็บ") || msgText.contains("จำคะเเนน")  ){
                 Point p = new Point();
-                String restext = p.recievepoint(msgText);
+                String restext = p.recievepoint(msgText,id);
                 text = restext;
         } else if (msgText.contains("ดูคะเเนนเก็บ") || msgText.contains("ดูคะเเนน")  ){
                 Point p = new Point();

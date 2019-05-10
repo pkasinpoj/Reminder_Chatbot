@@ -17,12 +17,13 @@ public class Rememberdb {
         String []arr = new String[10];
         arr = date.split("/");
         int idpk ;
+        CheckMember check = new CheckMember();
+        check.checkid(idline);
         Memberdb m = new Memberdb();
         idpk = m.checkid(idline);
         if (idpk !=0){
             String sql = ("INSERT INTO remember value ('" + randomnum + "','" + work + "','" + arr[0] + "','" + arr[1] + "','" + arr[2] + "','" + idpk + "')");
-            CheckMember check = new CheckMember();
-            check.checkid(idline);
+
             Connect c = new Connect();
             Connection con = c.connectDB();
             Statement stm = con.createStatement();
