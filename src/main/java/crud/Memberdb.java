@@ -10,7 +10,7 @@ public class Memberdb {
     public static void insertmember(String idline) {
         Random r = new Random();
         int randomnum = r.nextInt(1000000);
-        String sql = ("INSERT INTO member value ('" + randomnum + "'),'" + idline + "')");
+        String sql = ("INSERT INTO member value ('" + randomnum + "','" + idline + "')");
         try {
             Connect c = new Connect();
             Connection con = c.connectDB();
