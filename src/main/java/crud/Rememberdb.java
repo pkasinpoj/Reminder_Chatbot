@@ -13,8 +13,12 @@ public class Rememberdb {
         try {
         Random r = new Random();
         int randomnum = r.nextInt(10000000);
-        String []arr = new String[3];
+        String []arr = new String[10];
+        System.out.println(date);
         arr = date.split("/");
+        for (int i =0;i<arr.length;i++){
+            System.out.println(arr[i]);
+        }
         String sql = ("INSERT INTO remember value ('" + randomnum + "','" + work + "','" + arr[0] + "','" + arr[1] + "','" + arr[2] + "')");
         CheckMember check = new CheckMember();
         check.checkid(idline);
