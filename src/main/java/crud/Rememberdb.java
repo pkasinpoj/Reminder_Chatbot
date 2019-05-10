@@ -14,6 +14,7 @@ public class Rememberdb {
         Random r = new Random();
         int randomnum = r.nextInt(10000000);
         String []arr = new String[10];
+        arr = date.split("/");
         int idpk ;
         Memberdb m = new Memberdb();
         idpk = m.checkid(idline);
