@@ -8,12 +8,12 @@ public class Recieveinfo {
     public String Recieveinfo (String msgText,String id) throws IOException {
         String text;
         if (msgText.contains("ช่วยจำหน่อย") || msgText.contains("จำให้หน่อย") ){
-                Solution s = new Solution();
-                String restext = s.greeting();
+                Greeting g = new Greeting();
+                String restext = g.greeting();
                 text = restext;
-        } else if (msgText.contains("ขอดูวิธีการพิมพ์") || msgText.contains("ลืมวิะีการพิมพ์") || msgText.contains("วิธีการพิม") || msgText.contains("ดูวิธีพิมพ์") ){
-            Remembersubject r = new Remembersubject();
-            String restext = r.remembersubject(msgText);
+        } else if (msgText.contains("ขอดูวิธีการพิมพ์") || msgText.contains("ลืมวิธีการพิมพ์") || msgText.contains("วิธีการพิม") || msgText.contains("ดูวิธีพิมพ์") ){
+            Solution s = new Solution();
+            String restext = s.greeting();
             text = restext;
         } else if (msgText.contains("จำวิชาเรียน") || msgText.contains("จำวิชา")  ){
                 Remembersubject r = new Remembersubject();
