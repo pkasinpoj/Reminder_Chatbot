@@ -1,6 +1,7 @@
 package events;
 
 import classas.Payload;
+import function.Solution;
 import gateway.Recieveinfo;
 import message.Replytouser;
 
@@ -16,9 +17,12 @@ public class ManageEvent {
         if (eventType.equals("join")){
             if (payload.events[0].source.type.equals("group")){
                 r.replyToUser(payload.events[0].replyToken, "Hello Group");
-            }
-            if (payload.events[0].source.type.equals("room")){
+            }else if (payload.events[0].source.type.equals("room")){
                 r.replyToUser(payload.events[0].replyToken, "Hello Room");
+            }else {
+                Solution s = new Solution();
+                String text = s.greeting();
+                r.replyToUser(payload.events[0].replyToken,text);
             }
         } else if (eventType.equals("message")){
             if (payload.events[0].source.type.equals("group")){
