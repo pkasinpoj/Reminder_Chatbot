@@ -13,7 +13,7 @@ public class Connect {
                 return connect;
         }catch (Exception e){
             System.out.println("this"+e);
+            return null;
         }
-        return null;
     }
 }
