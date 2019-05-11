@@ -53,16 +53,19 @@ public class Pointdb {
             ResultSet rs = con.createStatement().executeQuery(sql);
             String[] arr = null;
             String[] arrpk = null;
+            String[] apoint = null;
             while (rs.next()) {
                 String ipk = rs.getString(2);
+                String points = rs.getString(3);
                 String em = rs.getString(4);
+                apoint = points.split("\n");
                 arrpk = ipk.split("\n");
                 arr = em.split("\n");
                 for (int i =0; i < arr.length; i++){
 //                    System.out.println(arr[i]);
                     int checkpoint = Integer.parseInt(arr[i]);
                     if (arrpk[i].equals(subject)&&checkpoint == idpk){
-                        point  = Integer.parseInt(arrpk[i]);
+                        point  = Integer.parseInt(apoint[i]);
                     }
                 }
             }
