@@ -19,22 +19,26 @@ public class Pointdb {
             check.checkid(idline);
             Memberdb m = new Memberdb();
             idpk = m.checkid(idline);
+            int points = showpoint(subject,idline);
             if (idpk !=0){
-                System.out.println(subject);
-                System.out.println(point);
-                System.out.println(idpk);
-                String sql = ("INSERT INTO point value ('" + randomnum + "','" + subject + "','" + point + "','" + idpk + "')");
-                Connect c = new Connect();
-                Connection con = c.connectDB();
-                Statement stm = con.createStatement();
-                stm.executeUpdate(sql);
-                System.out.println("บันทึกคะเเนนเรียบร้อยครับ");
-                con.close();
-                stm.close();
-                checksucess = true ;
-                return checksucess;
-            }else {
-                return checksucess;
+                if (points == 0){
+                    String sql = ("INSERT INTO point value ('" + randomnum + "','" + subject + "','" + point + "','" + idpk + "')");
+                    Connect c = new Connect();
+                    Connection con = c.connectDB();
+                    Statement stm = con.createStatement();
+                    stm.executeUpdate(sql);
+                    System.out.println("บันทึกคะเเนนเรียบร้อยครับ");
+                    con.close();
+                    stm.close();
+                    checksucess = true ;
+                    return checksucess;
+                }else {
+                    return checksucess;
+                }
+                }else{
+                    updatepoint(point,points,idpk,subject);
+                    checksucess = true;
+                    return checksucess;
             }
         } catch (Exception e) {
             System.out.println("errorthispoint"+e);
@@ -77,4 +81,22 @@ public class Pointdb {
             return point;
         }
     }
+    public static void updatepoint(int newpoint,int point,int idmem,String subject) {
+        int lastpoint = newpoint+point;
+        String sql = "update point "
+                + "set point='" + lastpoint + "'"
+                + "where Member_idMember='" + idmem + "'&& subject='" + subject + "' ";
+        try {
+            Connect c = new Connect();
+            Connection con = c.connectDB();
+            Statement stm = con.createStatement();    //สร้าง Statement
+            stm.executeUpdate(sql);                 //นำคำสั่ง sql มาดำเนินการ
+            System.out.println("แก้ไขเรียบร้อย");
+            con.close();
+            stm.close();
+        } catch (Exception e) {
+            System.out.println("thisupdate"+e);
+        }
+    }
 }
+
