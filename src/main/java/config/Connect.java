@@ -7,8 +7,8 @@ public class Connect {
         try{
             System.out.println("here");
                 Class.forName("com.mysql.cj.jdbc.Driver");//ระบุ Driver
-                String url = "jdbc:mysql://us-cdbr-iron-east-02.cleardb.net/heroku_50236681737c507";
-                Connection connect = DriverManager.getConnection(url, "bddf2105a1f693","4e10673e");
+                String url = "jdbc:mysql://xxxxxxxxxxxxxxxx";
+                Connection connect = DriverManager.getConnection(url, "xxxxxxxxxxx","xxxxxxxxx");
                 System.out.println("เชื่อมต่อฐานข้อมูลเรียบร้อย");
                 return connect;
         }catch (Exception e){
